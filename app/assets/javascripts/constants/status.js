@@ -1,0 +1,4 @@
+var STATUS = {
+    LOADING: 'LOADING',
+    READY: 'READY'
+}

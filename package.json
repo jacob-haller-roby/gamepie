@@ -1,0 +1,27 @@
+{
+  "name": "gamepie",
+  "version": "1.0.0",
+  "description": "== README",
+  "main": "index.js",
+  "repository": {
+  },
+  "author": "Jake Roby",
+  "dependencies": {
+    "react": "^0.14.0",
+    "react-addons-create-fragment": "^0.14.0",
+    "react-addons-pure-render-mixin": "^0.14.0",
+    "react-addons-transition-group": "^0.14.0",
+    "react-addons-update": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "react-tap-event-plugin": "^0.2.0",
+    "react-redux": "^4.0.0",
+    "redux": "^3.0.4",
+    "redux-thunk": "^1.0.0",
+    "material-ui": "0.14.4",
+    "babel": "^6.0.0",
+    "browserify": "^13.0.0",
+    "browserify-cache-api": "^3.0.0",
+    "browserify-incremental": "",
+    "flexbox": ""
+  }
+}
