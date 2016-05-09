@@ -1,4 +1,4 @@
-var gameReducer = function (state = {}, action) {
+var gameReducer = function (state = {}, action = null) {
 
     switch (action.type) {
         case(ACTIONS.SELECT_GAME):
@@ -17,7 +17,23 @@ var gameReducer = function (state = {}, action) {
                     : game;
             });
 
-            return React.addons.update(state, {list: {data: {$set: listData}}});
+            newState = React.addons.update(state, {list: {data: {$set: listData}}})
+
+            if (review.game_id == state.selected.id) {
+                newState = React.addons.update(newState, {selected: {myReview: {$set: review}}});
+            }
+            return newState;
+        case(ACTIONS.CLEAR_GAME):
+            return Object.assign({}, state, {selected: {}});
+        case(ACTIONS.CALCULATE_GAME):
+            gameIndex = state.list.data.findIndex(function (game) {
+                return game.id == action.data.id
+            });
+            newState = React.addons.update(state, {list: {data: {$splice: [[gameIndex, 1, action.data]]}}});
+            if (action.data.id == state.selected.id) {
+                newState = React.addons.update(newState, {selected: {$set: action.data}});
+            }
+            return newState;
         default:
             return state;
     }
@@ -26,7 +42,7 @@ var gameReducer = function (state = {}, action) {
 };
 
 
-var reviewReducer = function (state = {}, action) {
+var reviewReducer = function (state = {}, action = null) {
     console.log('review Reducer')
     switch (action.type) {
         case(ACTIONS.MY_REVIEW):
@@ -35,6 +51,8 @@ var reviewReducer = function (state = {}, action) {
         case(ACTIONS.POST_REVIEW):
         case(ACTIONS.UPDATE_REVIEW):
             return Object.assign({}, state, {myReview: action.data});
+        case(ACTIONS.CLEAR_GAME):
+            return Object.assign({}, state, {myReview: {}});
         default:
             return state;
     }

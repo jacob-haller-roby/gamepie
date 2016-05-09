@@ -5,15 +5,15 @@ class Api::ReviewsController < ApplicationController
   end
 
   def create
-    params[:review][:user_id] = current_user.id
+    params[:user_id] = current_user.id
     puts current_user.id
     review = Review.create(review_params)
     render json: review, :root => false
   end
 
   def update
-    Review.find(params[:review][:id]).update!(review_params)
-    render json: Review.find(params[:review][:id]), :root => false
+    Review.find(params[:id]).update!(review_params)
+    render json: Review.find(params[:id]), :root => false
   end
 
   def my_review
@@ -24,7 +24,7 @@ class Api::ReviewsController < ApplicationController
   protected
 
   def review_params
-    params.require(:review).permit(:game_id, :user_id, :white, :black, :green, :red, :blue)
+    params.permit(:game_id, :user_id, :white, :black, :green, :red, :blue)
   end
 
 

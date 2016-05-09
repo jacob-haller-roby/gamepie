@@ -1,6 +1,6 @@
 var WebAPI = {
     getAllGames: function(callback){
-        console.log('API fetching games')
+        console.log('API fetching games');
         $.ajax({
             url: '/api/games',
             method: 'GET',
@@ -10,12 +10,22 @@ var WebAPI = {
         })
     },
     getSelectedGame: function(id, callback){
-        console.log('API fetching game')
+        console.log('API fetching game');
         $.ajax({
             url: '/api/games/' + id,
             method: 'GET',
             success: function(response){
-                callback(response)
+                callback(response);
+            }
+        })
+    },
+    calculateGame: function(id, callback){
+        console.log('API calculating game');
+        $.ajax({
+            url: '/api/games/calculate/' + id,
+            method: 'PATCH',
+            success: function(response){
+                callback(response);
             }
         })
     },
@@ -27,7 +37,7 @@ var WebAPI = {
             method: 'POST',
             data: review,
             success: function(response){
-                callback(response)
+                callback(response);
             }
         })
     },

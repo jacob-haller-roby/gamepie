@@ -1,3 +1,68 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.scss.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+html body {
+  overflow-x: hidden;
+  background-image: url('plaid.jpg');
+}
+
+.slide-forward-enter {
+  transform: translate3d(100%, 10%, 0);
+  z-index: 50;
+}
+
+.slide-forward-enter.slide-forward-enter-active {
+  transition: all 500ms ease;
+  transform: translate3d(0, 0, 0);
+  z-index: 50;
+
+}
+
+.slide-forward-leave {
+  transform: translate3d(0, 0, 0);
+
+}
+
+.slide-forward-leave.slide-forward-leave-active {
+  transition: all 600ms ease-in;
+  transform: translate3d(-100%, -15%, 0);
+
+}
+
+.slide-backward-enter {
+  transform: translate3d(-100%, -10%, 0);
+
+}
+
+.slide-backward-enter.slide-backward-enter-active {
+  transition: all 600ms ease;
+  transform: translate3d(0, 0, 0);
+
+}
+
+.slide-backward-leave {
+  transform: translate3d(0, 0, 0);
+  z-index: 50;
+}
+
+.slide-backward-leave.slide-backward-leave-active {
+  transition: all 500ms ease-in;
+  transform: translate3d(100%, 15%, 0);
+  z-index: 50;
+}
+
+.color-bar {
+  float: left;
+  position: absolute;
+}
+
+.color-bar.fill {
+  border-width: 1px;
+  border-style: outset;
+  border-color: #808080;
+  z-index: 10;
+}
+
+.pulse-button {
+  animation: pulse 5s infinite;
+}

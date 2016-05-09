@@ -1,12 +1,12 @@
 var HomeContainer = React.createClass({
-    componentDidMount: function(){
+    componentDidMount: function () {
         this._unsubscribe = ReduxStore.subscribe(this._onChange);
         ActionCreator.loadGames();
     },
-    componentWillUnmount: function(){
+    componentWillUnmount: function () {
         this._unsubscribe();
     },
-    _calculateState: function(){
+    _calculateState: function () {
         let reduxState = ReduxStore.getState();
         return {
             games: reduxState.gameReducer.list.data || [],
@@ -14,16 +14,24 @@ var HomeContainer = React.createClass({
             myReview: reduxState.reviewReducer.myReview || {}
         }
     },
-    _onChange: function(){
+    _onChange: function () {
         this.setState(this._calculateState());
     },
-    getInitialState: function(){
+    getInitialState: function () {
         return {
             games: [],
             selectedGame: {}
         };
     },
-    render: function(){
-        return <Games {...this.state}/>
+    render: function () {
+        var logout = function(){$.ajax({
+            method: 'DELETE',
+            url: '/users/sign_out'
+        })};
+        return <div>
+            <Games {...this.state}/>
+            <MaterialUi.RaisedButton onClick={logout} style={{position: 'fixed', bottom: 0}}>Log Out</MaterialUi.RaisedButton>
+
+        </div>
     }
 });

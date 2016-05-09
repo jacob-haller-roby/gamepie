@@ -1,3 +1,3 @@
-baseReducer = Redux.combineReducers({gameReducer, reviewReducer});
+baseReducer = Redux.combineReducers({gameReducer: gameReducer, reviewReducer: reviewReducer});
 ReduxStore = Redux.createStore(baseReducer);
 console.log('store created');
